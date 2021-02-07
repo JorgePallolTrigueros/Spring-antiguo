@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+    
+      >
+    <head>     
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+        <style>
+            .pagination {
+                display: inline-block;
+            }
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 5px 5px;
+                text-decoration: none;
+            }
+            .pagination a.active {
+                background-color: gray;
+                color: white;
+                border-radius: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+
+         <div class="container">
+  <div class="row">
+      <div class="col-12">
+          
+          
+     
+            <img class="img-fluid"  th:src="@{/1.jpg}" alt=""/>
+     </div>    </div>   
+<div class="row">
+      <div class="col-12">
+      
+      
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        
+                       <li class="nav-item">
+                            <a class="nav-link" th:href="@{/muestraNovela/}">Muestra Novela</a>
+                        </li>  
+        
+                      <li class="nav-item">
+                            <a class="nav-link" th:href="@{/muestraproducto/}">Nuestros Productos</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"  th:href="@{/login/}">Login</a>
+                        </li>
+
+                        <li class="nav-item active"> <a class="nav-link"  th:href="@{/quienesomos/}">Quienes Somos</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"  th:href="@{/registro/}">Registro</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"  th:href="@{/muestraUsuario/}">Nuestros Autores
+                            </a>
+                        </li>
+
+
+
+
+    </ul>
+
+  </div>
+</nav>
+        
+     </div>     
+        
+
+        <div class="container">
+
+
+            <div class="row">    
+                <div class="col-3"></div>
+    <div class="col-5">
+        
+
+
+        <div class="card-columns">
+             <div class="card"  th:each="novela : ${novelas}">
+                <img th:src="@{${'/' + novela.imagen}}" class="card-img-top" />
+                <div class="card-body">
+
+                    <h6>[[${novela.nombre}]]  </h6></br>
+         [[${novela.descripcionp}]]  
+
+                                     <a th:href="@{/detalleNovela/{novelaId}(novelaId=${novela.novelaId})}">
+                      Ver Detalles
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        
+     </div>     
+        
+     </div>     
+        
+     </div>     
+        
+        
+        
+                <div style="text-align:center">
+            <div th:if="${novelas.totalPages > 0}" class="pagination"
+                 th:each="numeroPagina : ${numerosPagina}">
+
+                <a th:href="@{/muestraNovelaPaginada(size=${novelas.size}, page=${numeroPagina})}"
+                   th:text=${numeroPagina}
+                   th:class="${numeroPagina==novelas.number + 1} ? active"></a>
+            </div>
+        </div>
+ 
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
